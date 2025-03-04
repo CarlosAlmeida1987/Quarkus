@@ -1,7 +1,6 @@
-package tech.trimed.Service;
+package tech.trimed.service;
 
 import java.util.List;
-import java.util.UUID;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import tech.trimed.entity.UsuarioEntity;
@@ -28,12 +27,12 @@ public class UserService {
                 .list();
     }
 
-    public UsuarioEntity findById(UUID id) {
+    public UsuarioEntity findById(Integer id) {
         return (UsuarioEntity) userRepository.findByIdOptional(id)
                 .orElseThrow(UserNotFoundException::new);
     }
 
-    public UsuarioEntity updateUser(UUID id, UsuarioEntity usuarioEntity) {
+    public UsuarioEntity updateUser(Integer id, UsuarioEntity usuarioEntity) {
         var user = findById(id);
 
         user.setLogin(usuarioEntity.getLogin());
@@ -43,7 +42,7 @@ public class UserService {
         return user;
     }
 
-    public void deleteById(UUID id) {
+    public void deleteById(Integer id) {
         var user = findById(id);
         userRepository.deleteById(user.getId_login());
     }

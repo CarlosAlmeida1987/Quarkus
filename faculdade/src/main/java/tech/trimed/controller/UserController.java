@@ -1,7 +1,6 @@
 package tech.trimed.controller;
 
-import java.util.UUID;
-
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -15,8 +14,8 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import tech.trimed.Service.UserService;
 import tech.trimed.entity.UsuarioEntity;
+import tech.trimed.service.UserService;
 
 @Path("/usuario")
 @Produces(MediaType.APPLICATION_JSON)
@@ -30,6 +29,7 @@ public class UserController {
     }
 
     @GET
+    @RolesAllowed("manager")
     public Response findAll(@QueryParam("page") @DefaultValue("0") Integer page,
     @QueryParam("pageSize")@DefaultValue("10")Integer pageSize){
         var users = userService.findAll(page, pageSize);
@@ -38,6 +38,7 @@ public class UserController {
 
     @POST
     @Transactional
+    @RolesAllowed("manager")
     public Response createUser(UsuarioEntity userEntity){
        return Response.ok(userService.createUser(userEntity)).build();
     }
@@ -45,19 +46,22 @@ public class UserController {
     @PUT
     @Path("/{id}")
     @Transactional
-    public Response updateUser(@PathParam("id") UUID id, UsuarioEntity usuarioEntity){
+    @RolesAllowed("manager")
+    public Response updateUser(@PathParam("id") Integer id, UsuarioEntity usuarioEntity){
        return Response.ok(userService.updateUser(id, usuarioEntity)).build();
     }
 
     @GET
     @Path("/{id}")
-    public Response createUser(@PathParam("id") UUID id){
+    @RolesAllowed("manager")    
+    public Response createUser(@PathParam("id") Integer id){
        return Response.ok(userService.findById(id)).build();
     }
 
     @DELETE
     @Path("/{id}")
-    public Response deleteUser(@PathParam("id") UUID id){
+    @RolesAllowed("manager")
+    public Response deleteUser(@PathParam("id") Integer id){
         userService.deleteById(id);
        return Response.noContent().build();
     }

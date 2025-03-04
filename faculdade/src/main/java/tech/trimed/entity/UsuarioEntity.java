@@ -1,64 +1,76 @@
 package tech.trimed.entity;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import tech.trimed.enums.StatusLogin;
 import tech.trimed.enums.TipoUsuario;
 
+@Entity
+@Table(name = "tb_usuarios")
 public class UsuarioEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id_login;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_login")
+    private Integer idLogin;
 
-    private Integer id_usuario;
+    @Column(name = "id_usuario")
+    private Integer idUsuario;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_usuario")
     private TipoUsuario tipoUsuario;
 
+    @Column(name = "login")
     private String login;
 
+    @Column(name = "senha")
     private String senha;
 
-    private LocalDateTime data_criacao;
+    @Column(name = "data_criacao")
+    private LocalDateTime dataCriacao;
 
-    private LocalDateTime ultimo_acesso;
+    @Column(name = "ultimo_acesso")
+    private LocalDateTime ultimoAcesso;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private StatusLogin status;
 
     public UsuarioEntity() {}
 
-    public UsuarioEntity(Integer id_usuario, TipoUsuario tipoUsuario, String login, String senha) {
-        this.id_usuario = id_usuario;
+    public UsuarioEntity(Integer idUsuario, TipoUsuario tipoUsuario, String login, String senha) {
+        this.idUsuario = idUsuario;
         this.tipoUsuario = tipoUsuario;
         this.login = login;
         this.senha = senha;
-        this.data_criacao = LocalDateTime.now();
+        this.dataCriacao = LocalDateTime.now();
         this.status = StatusLogin.ATIVO;
     }
     
     // Getters and Setters
-    public UUID getId_login() {
-        return id_login;
+    public Integer getId_login() {
+        return idLogin;
     }
     
-    public void setId_login(UUID id_login) {
-        this.id_login = id_login;
+    public void setId_login(Integer idLogin) {
+        this.idLogin = idLogin;
     }
     
     public Integer getId_usuario() {
-        return id_usuario;
+        return idUsuario;
     }
     
-    public void setId_usuario(Integer id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setId_usuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
     
     public TipoUsuario getTipoUsuario() {
@@ -85,20 +97,20 @@ public class UsuarioEntity {
         this.senha = senha;
     }
     
-    public LocalDateTime getData_criacao() {
-        return data_criacao;
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
     }
     
-    public void setData_criacao(LocalDateTime data_criacao) {
-        this.data_criacao = data_criacao;
+    public void setDataCriacao(LocalDateTime dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
     
-    public LocalDateTime getUltimo_acesso() {
-        return ultimo_acesso;
+    public LocalDateTime getUltimoAcesso() {
+        return ultimoAcesso;
     }
     
-    public void setUltimo_acesso(LocalDateTime ultimo_acesso) {
-        this.ultimo_acesso = ultimo_acesso;
+    public void setUltimoAcesso(LocalDateTime ultimoAcesso) {
+        this.ultimoAcesso = ultimoAcesso;
     }
     
     public StatusLogin getStatus() {
