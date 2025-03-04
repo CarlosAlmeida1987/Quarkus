@@ -16,3 +16,26 @@ cursos. Soluções parciais serão aceitas.
 
 ○ Visualizar a matriz curricular.
 
+Criação do sql
+Definição das estrutura das tabelas e relacionamento.
+
+application.properties
+quarkus.hibernate-orm.sql-load-script=import.sql
+quarkus.hibernate-orm.database.generation=update
+
+Criação do Projeto inicial
+https://code.quarkus.io/?g=tech.trimed&e=rest&e=hibernate-orm-panache&e=jdbc-mysql&e=rest-jackson&e=keycloak-admin-resteasy-cliente
+
+Selected Extensions Clear
+REST
+STARTER-CODE
+Hibernate ORM with Panache
+STARTER-CODE
+JDBC Driver - MySQL
+REST Jackson
+Keycloak Admin RESTEasy Client
+
+Configuração:
+Java: graalvm-jdk-21_windows-x64_bin 
+Maven: apache-maven-3.9.9
+
