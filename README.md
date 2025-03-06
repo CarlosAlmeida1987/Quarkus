@@ -39,3 +39,33 @@ Configuração:
 Java: graalvm-jdk-21_windows-x64_bin 
 Maven: apache-maven-3.9.9
 
+keycloak
+docker run -p 8082:8080 -e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:26.1.3 start-dev
+Create realm
+developer
+
+Client ID
+app_universidade
+
+Create role
+user
+manager
+curso
+
+User
+user_universidade
+Senha: users
+admin_universidade
+admins
+curso_universidade
+cursos
+
+grant_type:password
+
+Verificar aporta
+http://localhost:59951/realms/developer/protocol/openid-connect/token
+
+Modificando porta Aplicação Java
+server:
+port:8081
+
