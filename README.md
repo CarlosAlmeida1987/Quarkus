@@ -16,10 +16,19 @@ cursos. Soluções parciais serão aceitas.
 
 ○ Visualizar a matriz curricular.
 
+Angular 19
+npm start
+Quarkus
+mvn quarkus:dev
+
 Criação do sql
 Definição das estrutura das tabelas e relacionamento.
 
 application.properties
+
+quarkus.oidc.auth-server-url=http://localhost:8180/realms/quarkus
+quarkus.oidc.client-id=backend-service
+quarkus.oidc.credentials.secret=secret
 quarkus.hibernate-orm.sql-load-script=import.sql
 quarkus.hibernate-orm.database.generation=update
 
@@ -40,7 +49,7 @@ Java: graalvm-jdk-21_windows-x64_bin
 Maven: apache-maven-3.9.9
 
 keycloak
-docker run -p 8082:8080 -e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:26.1.3 start-dev
+docker run -p 8543:8080 -e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:26.1.3 start-dev
 Create realm
 developer
 
