@@ -60,7 +60,7 @@ public class AlunoEntity {
         return curso;
     }
     
-    public void setIdCurso(CursoEntity curso) {
+    public void setCurso(CursoEntity curso) {
         this.curso = curso;
     }
     

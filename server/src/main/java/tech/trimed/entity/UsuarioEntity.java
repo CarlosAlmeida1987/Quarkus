@@ -57,19 +57,19 @@ public class UsuarioEntity {
     }
     
     // Getters and Setters
-    public Integer getId_login() {
+    public Integer getIdLogin() {
         return idLogin;
     }
     
-    public void setId_login(Integer idLogin) {
+    public void setIdLogin(Integer idLogin) {
         this.idLogin = idLogin;
     }
     
-    public Integer getId_usuario() {
+    public Integer getIdUsuario() {
         return idUsuario;
     }
     
-    public void setId_usuario(Integer idUsuario) {
+    public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
     

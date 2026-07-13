@@ -49,7 +49,7 @@ public class CursosController {
 
     @GET
     @Path("/{id}")
-    public Response createCurso(@PathParam("id") Integer id){
+    public Response findById(@PathParam("id") Integer id){
        return Response.ok(cursosService.findById(id)).build();
     }
 

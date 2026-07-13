@@ -54,7 +54,7 @@ public class UserController {
     @GET
     @Path("/{id}")
     @RolesAllowed("manager")    
-    public Response createUser(@PathParam("id") Integer id){
+    public Response findById(@PathParam("id") Integer id){
        return Response.ok(userService.findById(id)).build();
     }
 

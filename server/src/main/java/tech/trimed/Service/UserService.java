@@ -44,6 +44,6 @@ public class UserService {
 
     public void deleteById(Integer id) {
         var user = findById(id);
-        userRepository.deleteById(user.getId_login());
+        userRepository.deleteById(user.getIdLogin());
     }
 }

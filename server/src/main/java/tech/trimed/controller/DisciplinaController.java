@@ -49,7 +49,7 @@ public class DisciplinaController {
 
     @GET
     @Path("/{id}")
-    public Response createDisciplina(@PathParam("id") Integer id){
+    public Response findById(@PathParam("id") Integer id){
        return Response.ok(disciplinaService.findById(id)).build();
     }
 

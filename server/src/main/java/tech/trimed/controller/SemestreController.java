@@ -49,7 +49,7 @@ public class SemestreController {
 
     @GET
     @Path("/{id}")
-    public Response createSemestre(@PathParam("id") Integer id){
+    public Response findById(@PathParam("id") Integer id){
        return Response.ok(semestreService.findById(id)).build();
     }
 
