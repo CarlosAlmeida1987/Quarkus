@@ -2,6 +2,7 @@ package tech.trimed.controller;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.DefaultValue;
@@ -14,7 +15,8 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import tech.trimed.entity.UsuarioEntity;
+import tech.trimed.dto.UsuarioRequestDTO;
+import tech.trimed.dto.UsuarioResponseDTO;
 import tech.trimed.service.UserService;
 
 @Path("/usuario")
@@ -39,16 +41,17 @@ public class UserController {
     @POST
     @Transactional
     @RolesAllowed("manager")
-    public Response createUser(UsuarioEntity userEntity){
-       return Response.ok(userService.createUser(userEntity)).build();
+    public Response createUser(@Valid UsuarioRequestDTO dto){
+       UsuarioResponseDTO created = userService.createUser(dto);
+       return Response.status(Response.Status.CREATED).entity(created).build();
     }
 
     @PUT
     @Path("/{id}")
     @Transactional
     @RolesAllowed("manager")
-    public Response updateUser(@PathParam("id") Integer id, UsuarioEntity usuarioEntity){
-       return Response.ok(userService.updateUser(id, usuarioEntity)).build();
+    public Response updateUser(@PathParam("id") Integer id, @Valid UsuarioRequestDTO dto){
+       return Response.ok(userService.updateUser(id, dto)).build();
     }
 
     @GET

@@ -1,6 +1,7 @@
 package tech.trimed.controller;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.DefaultValue;
@@ -13,7 +14,8 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import tech.trimed.entity.CursoEntity;
+import tech.trimed.dto.CursoRequestDTO;
+import tech.trimed.dto.CursoResponseDTO;
 import tech.trimed.service.CursosService;
 
 @Path("/curso")
@@ -36,15 +38,16 @@ public class CursosController {
 
     @POST
     @Transactional
-    public Response createCurso(CursoEntity cursoEntity){
-       return Response.ok(cursosService.createCurso(cursoEntity)).build();
+    public Response createCurso(@Valid CursoRequestDTO dto){
+       CursoResponseDTO created = cursosService.createCurso(dto);
+       return Response.status(Response.Status.CREATED).entity(created).build();
     }
 
     @PUT
     @Path("/{id}")
     @Transactional
-    public Response updateCurso(@PathParam("id") Integer id, CursoEntity cursoEntity){
-       return Response.ok(cursosService.updateCurso(id, cursoEntity)).build();
+    public Response updateCurso(@PathParam("id") Integer id, @Valid CursoRequestDTO dto){
+       return Response.ok(cursosService.updateCurso(id, dto)).build();
     }
 
     @GET
